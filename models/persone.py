@@ -1,6 +1,7 @@
 from pydantic import BaseModel, root_validator, Field
 import json
 import random
+from uuid import UUID, uuid4
 
 class persone(BaseModel):
     _sex:str = Field(default="M", choices = ["M","F"])

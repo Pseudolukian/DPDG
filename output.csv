@@ -1,0 +1,4 @@
+personal_id,name,last_name,age,date_of_birth,sex,country,passport_number,issue_date,expiration_date,authority
+b254ba63-5ae7-4183-99d3-7fbebec142da,Ella,Martin,31,24.20.1992,F,USA,78250-46909,24.20.2008,24.20.2048,Philadelphia Passport Agency
+4b73d216-4628-49a7-8799-189f97e791b4,Sophia,Jackson,64,24.20.1959,F,USA,90960-24727,24.20.1975,24.20.2015,San Diego Passport Agency
+782888ea-393a-4fd8-b63d-3c2d9f4f11db,Mia,Martinez,45,24.20.1978,F,USA,60597-17594,24.20.1994,24.20.2034,Connecticut Passport Agency
