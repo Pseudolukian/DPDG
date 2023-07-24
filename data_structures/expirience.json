@@ -1,0 +1,80 @@
+{
+    "USA": {
+        "companies": [
+            "Google",
+            "Apple",
+            "Microsoft",
+            "Tesla",
+            "Amazon",
+            "Facebook",
+            "Netflix",
+            "Oracle",
+            "Cisco",
+            "IBM",
+            "Adobe",
+            "General Motors",
+            "Ford",
+            "Boeing",
+            "Lockheed Martin"
+        ]
+    },
+    "RUSSIA": {
+        "companies": [
+            "Yandex",
+            "VKontakte",
+            "Mail.Ru Group",
+            "Gazprom",
+            "Rosneft",
+            "OOO Kaspersky Lab",
+            "OOO Norilsk Nickel",
+            "OOO Lukoil",
+            "OOO Aeroflot",
+            "OOO Sberbank",
+            "OOO Rostelecom",
+            "OOO Transneft",
+            "OOO InterRAO",
+            "OOO MegaFon",
+            "OOO MTS"
+        ]
+    },
+    "UK": {
+        "companies": [
+            "BP",
+            "HSBC",
+            "AstraZeneca",
+            "Vodafone",
+            "Unilever",
+            "Rolls-Royce",
+            "GlaxoSmithKline",
+            "Barclays",
+            "Lloyds Banking Group",
+            "Tesco",
+            "BAE Systems",
+            "Royal Dutch Shell",
+            "Rio Tinto",
+            "Diageo",
+            "Reckitt Benckiser"
+        ]
+    },
+    "awards": [
+        "Employee of the Month",
+        "Best Innovator Award",
+        "Leadership Excellence Award",
+        "Top Performer of the Year",
+        "Outstanding Contribution Award"
+    ],
+    "reprimands": [
+        "Late for work",
+        "Missed deadline",
+        "Violation of company policy",
+        "Improper behavior with colleagues",
+        "Negligence of duties"
+    ],
+    "reason_for_leaving": [
+        "Better job opportunity",
+        "Relocation to another city/country",
+        "Personal reasons",
+        "Work-life balance issues",
+        "Desire for a career change"
+    ]
+}
