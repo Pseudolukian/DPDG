@@ -12,29 +12,72 @@ from dateutil.relativedelta import relativedelta
 
 class FakeGenerator:
     
-    def __init__(self,sex:str = "M", age:List[int] = [25,70], country:str = "USA"):
+    class Generator:
+        def __init__(self, outer_instance):
+            self.outer = outer_instance
+
+        def personal(self) -> persone:
+            
+            pers = persone(country = self.outer.country, sex = self.outer.sex, age = self.outer._random_age)
+            return pers
+
+        def passport(self) -> passport:
+            
+            pas = passport(country = self.outer.country, sex = self.outer.sex,
+                           date_of_birth = self.outer.day_of_birth(age = self.outer._random_age),
+                           issue_date = self.outer.day_of_birth(age=self.outer._random_age, plus_years_to_birth=16),
+                           expiration_date = self.outer.day_of_birth(age=self.outer._random_age, plus_years_to_birth=56))
+            return pas
+
+        def diploma(self) -> diploma:
+            
+            random_spec_pos_resp = self.outer.rand_spec_pos_resp()
+            thes_ad = persone(country=self.outer.country, sex=self.outer.sex)
+            diplom = diploma(thesis_advisor="".join(thes_ad.name + " " + thes_ad.last_name),
+                            specialty=random_spec_pos_resp.specialty,
+                            graduation_year=self.outer.day_of_birth(age=self.outer._random_age, plus_years_to_birth=22))
+            return diplom
+        
+        def address(self) -> address:
+            return address(country=self.outer.country)
+        
+        def contacts(self) -> contacts:
+            return contacts(country=self.outer.country, sex=self.outer.sex)
+
+        def biometric(self) -> biometric:
+            return biometric(sex=self.outer.sex)
+        
+        def experience(self) -> expirience:
+            random_spec_pos_resp = self.outer.rand_spec_pos_resp()
+            cur_job_start = self.outer.random_date(way="past", delta=[1,3])
+            prev_job_start = self.outer.random_date(way="past", delta=[3,5])
+            supervisor = persone(country=self.outer.country, sex=self.outer.sex)
+            exp = expirience(country=self.outer.country, 
+                             cur_position=random_spec_pos_resp.position,
+                             responsibilities=random_spec_pos_resp.responsibilities,
+                             cur_comp_start_date=cur_job_start,
+                             supervisor_name="".join(supervisor.name + " " + supervisor.last_name),
+                             prev_position=self.outer.rand_spec_pos_resp().position,
+                             prev_comp_start_date=prev_job_start)
+            return exp
+
+        
+        def driver_license(self) -> driverlicense:
+            
+            dr_lic = driverlicense(issue_date=self.outer.day_of_birth(age = self.outer._random_age, plus_years_to_birth=18), 
+                                   expiration_date=self.outer.random_date(way="future", delta=[5,10]))
+            return dr_lic
+        
+    def __init__(self,sex:str = "M", age:List[int] = [25,70], 
+                 country:str = "USA", date_template:str = "%m.%d.%Y",):
         self.sex = sex
         self.age = age
         self.country = country
-        
-    def config_importer(self, config_path:str = "./config/conf.json", conf_key:str = "date_format") -> str:
-        """
-        Loads configuration data from a JSON file and returns the value of the specified key.
-
-        This function offers a convenient way to extract specific configuration data from a JSON file. 
-        By default, it looks for the "date_format" key in the file located at "./config/conf.json".
-
-        Args:
-            config_path (str, optional): Path to the configuration JSON file. Defaults to "./config/conf.json".
-            conf_key (str, optional): The key whose value is to be extracted from the JSON configuration. Defaults to "date_format".
-
-        Returns:
-            str: The value associated with the provided key from the configuration.
-        """
-        config_data = json.load(open(config_path,'r'))
-        return config_data[conf_key]    
+        self.generator = self.Generator(self)
+        self.date_template = date_template   
+        self._random_age = randint(self.age[0], self.age[1])
     
-    def day_of_birth(self, age: int, date_template: str, plus_years_to_birth:int = 0) -> str:
+    def day_of_birth(self, age: int, plus_years_to_birth:int = 0) -> str:
         """
         Calculates the date of birth based on the given age and then optionally adjusts it by a number of years.
 
@@ -50,12 +93,12 @@ class FakeGenerator:
         Returns:
             str: Formatted date string representing the adjusted date of birth.
         """
-        date_now = datetime.now()
-        date_of_birth = date_now - relativedelta(years=age)
+        current_date = datetime.now()
+        date_of_birth = current_date - relativedelta(years = age)
         date_with_added_years = date_of_birth + relativedelta(years=plus_years_to_birth)
-        return date_with_added_years.strftime(date_template)
+        return date_with_added_years.strftime(self.date_template)
     
-    def random_date(self, way: str = "past", delta: List[int] = [1, 20], template:str = '%d.%M.%Y') -> str:
+    def random_date(self, way: str = "past", delta: List[int] = [1, 20]) -> str:
         """
         Generate a random date either in the past or future, based on a range of years, and then format it.
 
@@ -87,7 +130,7 @@ class FakeGenerator:
         else:
             raise ValueError(f"Invalid value for 'way': {way}. Use 'past' or 'future'.")
         
-        return random_date_result.strftime(template)
+        return random_date_result.strftime(self.date_template)
     
         
     def rand_spec_pos_resp(self) -> job_specs:
@@ -124,57 +167,5 @@ class FakeGenerator:
         return specs_out
     
     
-    def generator(self, chanks:List[str] = None) -> OutputModel:
-        
-        
-        date_template = self.config_importer()
-        random_age = randint(self.age[0],self.age[1])
-        random_spec_pos_resp = self.rand_spec_pos_resp()
-        cur_job_start = self.random_date(way="past", delta=[1,3])
-        prev_job_start = self.random_date(way="past", delta=[3,5])
-        
-        #=======Personal data===============
-        pers = persone(country = self.country, 
-                    sex = self.sex,
-                    age = random_age)
-        #=======Passport data===============
-        pas = passport(country = self.country, sex = self.sex, 
-                    date_of_birth = self.day_of_birth(age=random_age, date_template=date_template),
-                    issue_date = self.day_of_birth(age=random_age, date_template=date_template, plus_years_to_birth=16),
-                    expiration_date = self.day_of_birth(age=random_age, date_template=date_template, plus_years_to_birth=56))
-        
-        #=======Address data===============
-        ad = address(country = self.country)
-        
-        #=======Expirience data=============
-        supervisor = persone(country = self.country, sex = self.sex)
-        exp = expirience(country = self.country, 
-                        cur_position = random_spec_pos_resp.position,
-                        responsibilities = random_spec_pos_resp.responsibilities,
-                        cur_comp_start_date = cur_job_start,
-                        supervisor_name = "".join(supervisor.name + " " + supervisor.last_name),
-                        prev_position = self.rand_spec_pos_resp().position,
-                        prev_comp_start_date = prev_job_start)
-        
-        #=======Contacts data===============
-        cont = contacts(country = self.country, sex = self.sex)
-        #=======Diploama data===============
-        thes_ad = persone(country = self.country, sex = self.sex)
-        diplom = diploma(thesis_advisor = "".join(thes_ad.name + " " + thes_ad.last_name),
-                        specialty = random_spec_pos_resp.specialty,
-                        graduation_year=self.day_of_birth(age=random_age, date_template=date_template, plus_years_to_birth=22))
-        
-        #=======Driver license data===============
-        dr_lic = driverlicense(issue_date = self.day_of_birth(age=random_age, 
-                            date_template=date_template, plus_years_to_birth=18), 
-                            expiration_date = self.random_date(way="future", delta=[5,10]))
-        
-        #=======Biometrics data===============
-        bio = biometric(sex = self.sex)    
-        out_full = OutputModel(Personal_data = pers, Passport_data = pas, Address_data = ad,
-                               Expirience_data = exp, Contacts_data = cont, Diploama_data = diplom,
-                               Driver_license_data = dr_lic, Biometrics_data = bio)
-        
-        out = OutputModel(Personal_data = pers, Passport_data = pas)
-        return out
+    
 

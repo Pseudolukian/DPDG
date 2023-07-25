@@ -1,9 +1,10 @@
 from pydantic import BaseModel, root_validator, Field
 import json
 import random
-from uuid import UUID, uuid4
+from uuid import uuid4
 
 class persone(BaseModel):
+    personal_id:str = Field(default_factory=uuid4)
     _sex:str = Field(default="M", choices = ["M","F"])
     _country:str = Field(default="USA",choices = ["USA","RUSSIA","UK"])
     name:str = None
