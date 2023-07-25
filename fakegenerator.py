@@ -8,8 +8,6 @@ from datetime import timedelta
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-
-
 class FakeGenerator:
     
     class Generator:
@@ -68,58 +66,24 @@ class FakeGenerator:
                                    expiration_date=self.outer.random_date(way="future", delta=[5,10]))
             return dr_lic
         
-    def __init__(self,sex:str = "M", age:List[int] = [25,70], 
-                 country:str = "USA", date_template:str = "%m.%d.%Y",):
-        self.sex = sex
+    def __init__(self, sex:List[str] = ["M","F"], age:List[int] = [25, 70], 
+                 country:List[str] = ["USA","RUSSIA","UK"], date_template:str = "%m.%d.%Y",):
+        self.sex = random.choice(sex)
         self.age = age
-        self.country = country
+        self.country = random.choice(country)
         self.generator = self.Generator(self)
         self.date_template = date_template   
-        self._random_age = randint(self.age[0], self.age[1])
+        self._random_age = randint(self.age[0], self.age[1])  
+    
+         
     
     def day_of_birth(self, age: int, plus_years_to_birth:int = 0) -> str:
-        """
-        Calculates the date of birth based on the given age and then optionally adjusts it by a number of years.
-
-        This function first determines the date of birth from the current date minus the provided age. 
-        It then optionally adds a certain number of years to the calculated date of birth, allowing for adjustments 
-        or hypothetical scenarios. The resulting date is then formatted using the provided date template.
-
-        Args:
-            age (int): Age of the person for which the date of birth is to be calculated.
-            date_template (str): The date format template to format the resulting date.
-            plus_years_to_birth (int, optional): Number of years to add to the calculated date of birth. Defaults to 0.
-
-        Returns:
-            str: Formatted date string representing the adjusted date of birth.
-        """
         current_date = datetime.now()
         date_of_birth = current_date - relativedelta(years = age)
         date_with_added_years = date_of_birth + relativedelta(years=plus_years_to_birth)
         return date_with_added_years.strftime(self.date_template)
     
     def random_date(self, way: str = "past", delta: List[int] = [1, 20]) -> str:
-        """
-        Generate a random date either in the past or future, based on a range of years, and then format it.
-
-        This function takes the current date and then adjusts it by a random number of years 
-        either backwards (for past dates) or forwards (for future dates). The number of adjustment 
-        years is chosen randomly within a provided range. The final adjusted date is then 
-        formatted according to the provided template.
-
-        Args:
-            way (str, optional): Direction of date adjustment, either "past" for dates in the past 
-                or "future" for dates in the future. Defaults to "past".
-            delta (List[int], optional): Range [start, end] of years to randomly select the adjustment from. 
-                Defaults to [1, 20].
-            template (str, optional): The date format template to format the resulting date. Defaults to '%d.%M.%Y'.
-
-        Returns:
-            str: Formatted date string representing the randomly adjusted date.
-
-        Raises:
-            ValueError: If the 'way' argument is not "past" or "future".
-        """
         current_date = datetime.now()
         years_delta = random.randint(delta[0], delta[1])
         
@@ -134,22 +98,6 @@ class FakeGenerator:
     
         
     def rand_spec_pos_resp(self) -> job_specs:
-        """
-        Generate random job specifications including specialty, position, and responsibilities.
-
-        This function reads from a JSON structure which has specialties and their corresponding 
-        job positions along with the responsibilities for each position. It then randomly selects 
-        a specialty, a job position under that specialty, and two responsibilities associated 
-        with that position. These randomly selected values are stored in a `job_specs` object and returned.
-
-        Returns:
-            job_specs: An object containing the randomly selected specialty, position, 
-                    and a list of two responsibilities.
-
-        Raises:
-            IOError: If there's an error reading the JSON file.
-            KeyError: If the expected keys are not found in the JSON data.
-        """
         specs_out = job_specs()
         with open("./data_structures/diploma.json", "r") as file:
             spec_data = json.load(file)
