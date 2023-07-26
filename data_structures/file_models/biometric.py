@@ -23,11 +23,11 @@ class biometric(BaseModel):
     dental_records: str = None
     blood_type: str = None
     gait_pattern: str = None
-    voice_id: UUID = None
-    dna_id: UUID = None
-    fingerprint_id: UUID = None
-    retina_scan_id: UUID = None
-    handwriting_sample_id: UUID = None
+    voice_id: str = None
+    dna_id: str = None
+    fingerprint_id: str = None
+    retina_scan_id: str = None
+    handwriting_sample_id: str = None
     birthmarks: List[str] = []
     tattoos: Dict[str, str] = {}
     scars: Dict[str, str] = {}
@@ -39,13 +39,13 @@ class biometric(BaseModel):
         return self._sex
     
     @staticmethod
-    def set_id() -> UUID:
-        return uuid4()
+    def set_id() -> str:
+        return str(uuid4())
         
     
     @root_validator(pre=True)
     def set_data(cls, values):
-        biometric_data = json.load(open("./data_structures/biometrics.json","r"))
+        biometric_data = json.load(open("./data_structures/data_bases/biometrics.json","r"))
         #======set height===========#
         min_height = biometric_data[values["sex"]]["height"]["min_height"]
         max_height = biometric_data[values["sex"]]["height"]["max_height"]

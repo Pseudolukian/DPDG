@@ -34,8 +34,8 @@ class expirience(BaseModel):
     
     @root_validator(pre=True)
     def set_exp_data(cls, values):
-        exp_data = json.load(open("./data_structures/expirience.json"))
-        contacts_data = json.load(open("./data_structures/contacts.json", "r"))
+        exp_data = json.load(open("./data_structures/data_bases/expirience.json"))
+        contacts_data = json.load(open("./data_structures/data_bases/contacts.json", "r"))
         rand_cur_comp = random.choice(exp_data[values["country"]]["companies"])
         rand_prev_comp = random.choice(exp_data[values["country"]]["companies"])
         

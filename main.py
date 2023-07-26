@@ -1,11 +1,11 @@
 from fakegenerator import FakeGenerator
-from exporter import Exporter
+from file_exporter import File_Exporter
 from pprint import pprint
 
 
-exp = Exporter()
+f_exp = File_Exporter()
 
-for _ in range(10):
+for _ in range(1):
     f_g = FakeGenerator()
     pers = f_g.generator.personal()
     pas = f_g.generator.passport()
@@ -14,7 +14,8 @@ for _ in range(10):
     dip = f_g.generator.diploma()
     ad = f_g.generator.address()
     bio = f_g.generator.biometric()
+    dr_l = f_g.generator.driver_license()
     
-    exp.buffer.add(pers, pas, ad, cont, exp, dip, bio)
+    f_exp.buffer.add(pers, pas, ad, cont, exp, dip, bio, dr_l)
 
-pprint(exp.xls())
+pprint(f_exp.dict())

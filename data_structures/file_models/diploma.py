@@ -32,7 +32,7 @@ class diploma(BaseModel):
 
     @root_validator(pre = True)
     def set_diploma_data(cls,values):
-        diploma_data = json.load(open("./data_structures/diploma.json","r"))
+        diploma_data = json.load(open("./data_structures/data_bases/diploma.json","r"))
         values["qualification"] = random.choice(diploma_data["qualification"])
         values["university"] = random.choice(diploma_data["university"])
         values["honors"] = random.choice(diploma_data["honors"])

@@ -21,7 +21,7 @@ class persone(BaseModel):
     
     @root_validator(pre = True)
     def set_persone_data(cls, values):
-        persone_data = json.load(open("./data_structures/persone.json","r"))
+        persone_data = json.load(open("./data_structures/data_bases/persone.json","r"))
         name_data = persone_data[values["sex"]][values["country"]]["names"]
         last_name_data = persone_data[values["sex"]][values["country"]]["last_names"]
         values["name"] = random.choice(name_data)

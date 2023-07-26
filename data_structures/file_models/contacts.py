@@ -30,7 +30,7 @@ class contacts(BaseModel):
     
     @root_validator(pre=True)
     def set_all_data(cls, values):
-        contacts_data = json.load(open("./data_structures/contacts.json", "r"))
+        contacts_data = json.load(open("./data_structures/data_bases/contacts.json", "r"))
         values["phone_number"] = cls.generate_phone_number(contacts_data["phone_templates"][values["country"]])
         nick_pref = random.choice(contacts_data["NICK"][values["sex"]]["prefixes"])
         nick_body = random.choice(contacts_data["NICK"][values["sex"]]["bodys"])

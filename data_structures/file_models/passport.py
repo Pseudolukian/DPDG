@@ -29,7 +29,7 @@ class passport(BaseModel):
     def set_def_vals(cls, values):
         
         #======Set thr passport number=======#
-        passport_data = json.load(open("./data_structures/passport.json"))
+        passport_data = json.load(open("./data_structures/data_bases/passport.json"))
         pass_num = passport_data[values["country"]]["passport_temp_number"]
         auth = random.choice(passport_data[values["country"]]["authority"])
         values["authority"] = auth

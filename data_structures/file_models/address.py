@@ -26,7 +26,7 @@ class address(BaseModel):
     @root_validator(pre=True)
     def set_data(cls, values):
         coun = values.get("country", "USA")
-        addresses_data = json.load(open("./data_structures/addresses_base.json","r"))
+        addresses_data = json.load(open("./data_structures/data_bases/addresses_base.json","r"))
         divisions_len = len(addresses_data[coun]["states_and_cities"])-1
         random_division = randint(0, divisions_len)
         division_data = addresses_data[coun]["states_and_cities"][random_division]

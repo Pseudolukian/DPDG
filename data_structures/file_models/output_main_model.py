@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from models import persone, passport, address,expirience,contacts, diploma, driverlicense, biometric
+from data_structures.file_models import persone, passport, address,expirience,contacts, diploma, driverlicense, biometric
 
 class OutputModel(BaseModel):
     Personal_data:persone = None

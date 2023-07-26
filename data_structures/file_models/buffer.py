@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List,Type
-from models import OutputModel
+from data_structures.file_models import OutputModel
 
 class Buffer(BaseModel):
     buf:List[OutputModel] = []

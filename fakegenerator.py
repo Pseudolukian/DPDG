@@ -1,4 +1,4 @@
-from models import *
+from data_structures.file_models import *
 import random
 from random import randint
 from typing import List
@@ -66,8 +66,27 @@ class FakeGenerator:
                                    expiration_date=self.outer.random_date(way="future", delta=[5,10]))
             return dr_lic
         
-    def __init__(self, sex:List[str] = ["M","F"], age:List[int] = [25, 70], 
-                 country:List[str] = ["USA","RUSSIA","UK"], date_template:str = "%m.%d.%Y",):
+    def __init__(self, sex:List[str] = ["M", "F"], 
+                    age:List[int] = [25, 70], 
+                    country:List[str] = ["USA", "RUSSIA", "UK"], 
+                    date_template:str = "%m.%d.%Y",):
+        
+        if age[0] < 24:
+            raise ValueError('The first age value must be at least 24.')
+        if age[1] > 70:
+            raise ValueError('The second age value must not exceed 70.')
+        
+        for s in sex:
+            if s not in ["M", "F"]:
+                raise ValueError('The sex value must be either "M" or "F".')
+        
+        for c in country:
+            if c not in ["USA", "RUSSIA", "UK"]:
+                raise ValueError('The country value must be either "USA", "RUSSIA" or "UK".')    
+            
+        if len(date_template) == 0:
+            raise ValueError('The date template coud not be empty!')
+        
         self.sex = random.choice(sex)
         self.age = age
         self.country = random.choice(country)
@@ -99,7 +118,7 @@ class FakeGenerator:
         
     def rand_spec_pos_resp(self) -> job_specs:
         specs_out = job_specs()
-        with open("./data_structures/diploma.json", "r") as file:
+        with open("./data_structures/data_bases/diploma.json", "r") as file:
             spec_data = json.load(file)
 
         rand_spec = random.choice(list(spec_data["specialty"].keys()))

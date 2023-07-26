@@ -1,4 +1,4 @@
-from models import OutputModel, Buffer
+from data_structures.file_models import OutputModel, Buffer
 from pathlib import Path
 from uuid import uuid4
 import pandas as pd
@@ -7,7 +7,7 @@ from typing import Dict, Any
 import openpyxl
 
 
-class Exporter:
+class File_Exporter:
         
     def __init__(self):
         self.buffer = Buffer()

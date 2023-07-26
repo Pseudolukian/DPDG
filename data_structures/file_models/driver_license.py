@@ -16,7 +16,7 @@ class driverlicense(BaseModel):
     
     @root_validator(pre = True)
     def set_driverlicense_data(cls, values):
-        driverlicense_data = json.load(open("./data_structures/driverlicense.json","r"))
+        driverlicense_data = json.load(open("./data_structures/data_bases/driverlicense.json","r"))
         lic_num = [str(x).replace("X",str(randint(0,9))) for x in driverlicense_data["license_number_template"]]
         values["license_number"] = "".join(lic_num)
         rand_categories = list(set(random.choices(driverlicense_data["categories"], k = randint(1,3))))
