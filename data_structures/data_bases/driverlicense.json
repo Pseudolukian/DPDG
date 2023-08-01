@@ -1,0 +1,36 @@
+{
+    "license_number_template":"XX XXX-XXX-XXX XX",
+    "categories": [
+        "A - Motorcycles",
+        "B - Passenger cars",
+        "C1 - Light trucks up to 3.5 tons",
+        "C - Heavy trucks over 3.5 tons",
+        "D - Buses",
+        "BE - Passenger cars with heavy trailer",
+        "C1E - Light trucks with trailer",
+        "CE - Heavy trucks with trailer",
+        "DE - Buses with trailer",
+        "M - Mopeds",
+        "T - Tractors"
+    ],
+    "restrictions": [
+        "01 - Corrective glasses or contact lenses required",
+        "02 - Hearing aid or prosthetic device required",
+        "03 - Prosthetic limb(s) required",
+        "04 - Automatic transmission only",
+        "05 - Modified vehicle to accommodate physical condition",
+        "06 - Daytime driving only",
+        "07 - Limited to certain geographic areas or routes",
+        "08 - No passengers allowed",
+        "09 - Limited to employment-related driving"
+    ],
+    "issuing_authority": [
+        "DMV - Department of Motor Vehicles",
+        "DPS - Department of Public Safety",
+        "RMV - Registry of Motor Vehicles",
+        "DVS - Division of Vehicle Services",
+        "MVD - Motor Vehicle Division",
+        "DVA - Driver and Vehicle Agency",
+        "DVLA - Driver and Vehicle Licensing Agency"
+    ]
+}

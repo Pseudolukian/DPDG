@@ -1,0 +1,38 @@
+{
+    "M": {
+        "height": {"min_height": 150, "max_height": 210},
+        "weight": {"min_weight": 50, "max_weight": 200},
+        "waist": {"min_waist": 76, "max_waist": 100},
+        "chest_circumference": {"min_chest_circumference": 80, "max_chest_circumference": 120},
+        "foot_size": {"min_foot_size": 34, "max_foot_size": 50}
+    },
+    "F": {
+        "height": {"min_height": 140, "max_height": 180},
+        "weight": {"min_weight": 40, "max_weight": 100},
+        "waist": {"min_waist": 60, "max_waist": 90},
+        "chest_circumference": {"min_chest_circumference": 74, "max_chest_circumference": 105},
+        "foot_size": {"min_foot_size": 32, "max_foot_size": 44}
+    },
+
+    "hair_length": ["short", "medium", "long"],
+    "hair_color": ["black", "brown", "blonde", "auburn", "red", "gray", "white"],
+    "eye_color": ["brown", "blue", "green", "gray", "amber", "hazel"],
+    "face_shape": ["oval", "round", "square", "heart", "rectangle", "diamond"],
+    "ear_shape": ["round", "oval", "pointed"],
+    "nose_shape": ["straight", "roman", "hawk", "snub", "bulbous"],
+    "lip_shape": ["full", "thin", "heart-shaped", "wide"],
+    "birthmarks": ["mole", "freckles", "port-wine stain", "cafe-au-lait spot", "strawberry mark"],
+    "tattoos": {
+        "location": ["forearm", "wrist", "ankle", "back", "chest", "neck", "finger", "calf", "thigh", "shoulder"],
+        "description": ["tribal design", "dragon", "quote", "rose", "bird", "butterfly", "star", "skull", "tree", "geometric pattern"]
+    },
+    "scars": {
+        "location": ["forearm", "leg", "abdomen", "back", "face", "hand", "knee", "elbow", "ankle", "shoulder"],
+        "description": ["surgical scar", "burn mark", "accident scratch", "deep cut", "animal bite", "childhood injury", "puncture mark", "abrasion"]
+    },
+    
+    "dental_records": ["cavity", "filling", "crown", "bridge", "denture", "braces", "extraction", "wisdom teeth removal"],
+    "blood_type": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
+    "allergies": ["pollen", "dust", "food", "medication", "insect sting", "mold", "pet dander", "latex"],
+    "gait_pattern": ["neutral", "overpronation", "supination", "shuffling", "limping", "stiff", "bouncy"]
+}

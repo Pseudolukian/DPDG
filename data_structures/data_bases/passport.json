@@ -1,0 +1,52 @@
+{
+    "USA":{
+        "authority":[
+            "U.S. Department of State",
+            "Atlanta Passport Agency",
+            "Boston Passport Agency",
+            "Buffalo Passport Agency",
+            "Chicago Passport Agency",
+            "Colorado Passport Agency",
+            "Connecticut Passport Agency",
+            "Dallas Passport Agency",
+            "Detroit Passport Agency",
+            "El Paso Passport Agency",
+            "Honolulu Passport Agency",
+            "Houston Passport Agency",
+            "Los Angeles Passport Agency",
+            "Miami Passport Agency",
+            "Minneapolis Passport Agency",
+            "New Orleans Passport Agency",
+            "New York Passport Agency",
+            "Philadelphia Passport Agency",
+            "San Diego Passport Agency",
+            "San Francisco Passport Agency",
+            "Seattle Passport Agency",
+            "Washington Passport Agency"
+        ],
+        "passport_temp_number":"XXXXX-XXXXX"
+    },
+    "RUSSIA":{
+        "authority":[
+            "MVD po Tverskoy rn, Moscow, 12-1242",
+            "MVD po Arbat rn, Moscow, 13-1343",
+            "MVD po Kirovsky rn, Saint Petersburg, 15-1545",
+            "MVD po Petrogradsky rn, Saint Petersburg, 16-1646",
+            "MVD po Sovetsky rn, Novosibirsk, 18-1848",
+            "MVD po Leninsky rn, Yekaterinburg, 20-2040",
+            "MVD po Oktyabrsky rn, Nizhny Novgorod, 22-2242",
+            "MVD po Krasnoglinsky rn, Samara, 24-2444",
+            "MVD po Zheleznodorozhny rn, Omsk, 26-2646",
+            "MVD po Proletarsky rn, Rostov-on-Don, 28-2848"
+        ],
+        "passport_temp_number":"XX XX XXXXXX"
+    },
+    "UK":{
+        "authority":["Her Majesty's Passport Office",
+        "Glasgow Passport Customer Service Centre",
+        "Belfast Passport Customer Service Centre",
+        "Durham Passport Customer Service Centre",
+        "Liverpool Passport Customer Service Centre"],
+        "passport_temp_number":"XXXXX-XXXXX"
+    }
+}

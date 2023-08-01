@@ -1,0 +1,28 @@
+{
+    "phone_templates": {
+        "USA": "+1 XXX-XXX-XXXX",
+        "RUSSIA": "+7 XXX-XXX-XX-XX",
+        "UK": "+44 XXXX-XXX-XXX"
+    },
+    "NICK": {
+        "M":{
+        "prefixes": ["big", "little", "tiny", "huge", "strong", "fast", "furious", "wild", "cool", "brave", "dark", "light", "red", "blue", "green", "sly", "crazy", "lazy"],
+        "bodys": ["daddy", "mad", "pony", "wolf", "lion", "bear", "shark", "fox", "hound", "joker", "king", "king", "knight", "star", "moon", "sun", "drake", "bird", "cat", "dog", "hunter", "tiger", "eagle", "hawk", "raven", "panther", "thunder", "storm", "cloud", "dream", "shadow", "spirit", "phantom", "dancer", "prince", "princess", "lord", "master", "chief", "boss"],
+        "postfix": ["lol", "pro", "xoxo", "7a", "9b", "1x", "2y", "3z", "4u", "5o", "6t", "8p", "0k", "gg", "ftw", "win", "real", "only", "true", "best", "last", "first", "top", "hero", "warrior", "fighter", "champ", "ace", "vip", "elite"]
+        },
+        "F":{
+            "prefixes": ["little", "tiny", "miss", "sweet", "wild", "cool", "brave", "dark", "light", "red", "blue", "green", "sly", "crazy", "shy", "sassy", "golden", "silky", "fancy", "glossy"],
+            "bodys": ["lady", "dolly", "pony", "cat", "bella", "star", "moon", "sun", "diva", "queen", "princess", "rose", "lily", "daisy", "peach", "dream", "shadow", "spirit", "butterfly", "fairy", "angel", "doll", "mermaid", "witch", "raven", "unicorn", "jewel", "gem", "heart", "song", "dance", "charm", "muse", "sparkle", "twinkle", "frost", "bloom"],
+            "postfix": ["lol", "pro", "xoxo", "love", "kiss", "7a", "8b", "9c", "1x", "2y", "3z", "4u", "5o", "6t", "babe", "girl", "missy", "honey", "sugar", "pie", "cute", "petite", "bliss", "chic", "luxe", "vogue", "smile", "giggle", "breeze", "blush"]
+        },
+        "devisions":["_", "-","."]
+        
+        },
+    "email_hosters":["@gmail.com","@yahoo.com","@mail.ru","@yandex.ru"],
+    "social_web_link_templates": [
+        {"Facebook": "https://www.facebook.com/"},
+        {"VK": "https://vk.com/"},
+        {"LinkedIn": "https://www.linkedin.com/in/"},
+        {"Telegram": "https://t.me/"}
+    ]
+}
