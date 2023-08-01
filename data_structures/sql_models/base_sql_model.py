@@ -1,26 +1,26 @@
 from sqlmodel import Field, SQLModel, Relationship, ForeignKey
 from typing import Optional, List, Dict
-from sqlalchemy.ext.declarative import declarative_base
+from uuid import UUID
 
-class persone( SQLModel, table = True):
-    personal_id:str = Field(primary_key=True)
+class persone(SQLModel, table = True):
+    personal_id:UUID = Field(primary_key=True)
     name:str = None
     last_name:str = None
     age:int = None
-    
-    
-    passport: "passport" = Relationship(back_populates="persone")
-    driverlicense: "driverlicense" = Relationship(back_populates="persone")
-    address: "address" = Relationship(back_populates="persone")
-    contacts: "contacts" = Relationship(back_populates="persone")
-    diploma: "diploma" = Relationship(back_populates="persone")
-    expirience: "expirience" = Relationship(back_populates="persone")
-    biometric: "biometric" = Relationship(back_populates="persone")
+
+    passport_id: Optional["passport"] = Relationship(back_populates="persone_ref")
+    address_id: Optional["address"] = Relationship(back_populates="persone_ref")
+    driverlicense_id: Optional["driverlicense"] = Relationship(back_populates="persone_ref")
+    contacts_id: Optional["contacts"] = Relationship(back_populates="persone_ref")
+    diploma_id: Optional["diploma"] = Relationship(back_populates="persone_ref")
+    expirience_id: Optional["expirience"] = Relationship(back_populates="persone_ref")
+    biometric_id: Optional["biometric"] = Relationship(back_populates="persone_ref")
     
 
-class passport( SQLModel, table = True):
+
+class passport(SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True) 
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     date_of_birth: str = None
     sex:str = None
     country:str = None
@@ -29,23 +29,24 @@ class passport( SQLModel, table = True):
     expiration_date:str = None
     authority:str = None
     
-    persone: "persone" = Relationship(back_populates="passport")
-    
+    persone_ref: "persone" = Relationship(back_populates="passport_id")
+
+
 class driverlicense( SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True)
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     license_number: str = None
-    categories: List[str] = []
+    categories: str = None
     issue_date: str = None
     expiration_date: str = None
     issuing_authority: str = None
-    restrictions: List[str] = []    
+    restrictions: str = None   
     
-    persone: "persone" = Relationship(back_populates="driverlicense")
+    persone_ref: "persone" = Relationship(back_populates="driverlicense_id")
     
 class address( SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True)
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     administrative_division: Optional[str] = None
     city: Optional[str]  = None
     street: Optional[str]  = None
@@ -53,11 +54,11 @@ class address( SQLModel, table = True):
     apartment_number: Optional[str]  = None
     postal_code: Optional[str]  = None    
     
-    persone: "persone" = Relationship(back_populates="address")
+    persone_ref: "persone" = Relationship(back_populates="address_id")
     
 class contacts( SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True)
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     phone_number:str = None
     nick_name:str = None
     email:str = None
@@ -66,11 +67,11 @@ class contacts( SQLModel, table = True):
     LinkedIn_link:str = None
     Telegram_link:str = None    
     
-    persone: "persone" = Relationship(back_populates="contacts")
+    persone_ref: "persone" = Relationship(back_populates="contacts_id")
     
 class diploma( SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True)
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     specialty: str = None
     qualification: str  = None
     graduation_year: str = None
@@ -81,33 +82,33 @@ class diploma( SQLModel, table = True):
     thesis_title: Optional[str]  = None
     thesis_advisor: Optional[str] = None 
     
-    persone: "persone" = Relationship(back_populates="diploma") 
+    persone_ref: "persone" = Relationship(back_populates="diploma_id") 
     
-class expirience( SQLModel, table = True):
+class expirience(SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True)
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     cur_position: str = None
     cur_company: str = None
     cur_comp_start_date: str = None
-    responsibilities: List[str] = []
+    responsibilities: str = None
     work_phone: str = None
     supervisor_name: str = None
     salary: int = None
     currency:str = None
-    awards: List[str] = []
-    reprimands: List[str] = []  # Выговоры
+    awards: str = None
+    reprimands: str = None
     
     prev_company: str = None
     prev_position: str = None
     prev_comp_start_date:str = None
     reason_for_leaving: str = None    
     
-    persone: "persone" = Relationship(back_populates="expirience")
+    persone_ref: "persone" = Relationship(back_populates="expirience_id")
 
 
 class biometric( SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True)
-    personal_id: str = ForeignKey("persone.personal_id")
+    to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")
     height: int = None
     weight: int = None
     waist: int = None
@@ -129,9 +130,10 @@ class biometric( SQLModel, table = True):
     fingerprint_id: str = None
     retina_scan_id: str = None
     handwriting_sample_id: str = None
-    birthmarks: List[str] = []
-    tattoos: Dict[str, str] = {}
-    scars: Dict[str, str] = {}
-    allergies: List[str] = []    
+    birthmarks: str = None
+    tattoos: str = None
+    scars: str = None
+    allergies: str = None    
     
-    persone: "persone" = Relationship(back_populates="biometric")
+    persone_ref: "persone" = Relationship(back_populates="biometric_id")
+    
