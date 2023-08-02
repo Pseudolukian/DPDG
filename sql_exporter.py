@@ -73,7 +73,7 @@ class SQL_exporter:
         DATABASE_URL = ""
         
         if self.sql_engine == "sqlite":
-            DATABASE_URL = f"sqlite:///{self.db_path}{self.db_name}.db"
+            DATABASE_URL = f"sqlite:///{self.db_path}/{self.db_name}.db"
         elif self.sql_engine == "postgresql":
             DATABASE_URL = f"postgresql://{self.user}:{self.password}@localhost:5432/{self.db_name}"
         

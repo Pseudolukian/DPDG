@@ -1,4 +1,4 @@
-from pydantic import BaseModel, root_validator, Field, validator
+from pydantic import BaseModel, root_validator, Field
 import json
 import random
 from uuid import uuid4
@@ -32,7 +32,7 @@ class persone(BaseModel):
         persone(personal_id=UUID('65685aba-97cd-4a72-9535-6a302bf56715'), name='Lucy', last_name='White', age=66)
     """
     
-    personal_id:str = Field(default_factory=lambda: str(uuid4()))
+    personal_id:str = Field(default_factory=uuid4)
     _sex:str = Field(default="M", choices = ["M","F"])
     _country:str = Field(default="USA",choices = ["USA","RUSSIA","UK"])
     name:str = None
@@ -74,5 +74,3 @@ class persone(BaseModel):
         values["name"] = random.choice(name_data)
         values["last_name"] = random.choice(last_name_data)
         return values
-    
-   

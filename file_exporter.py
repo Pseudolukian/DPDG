@@ -158,7 +158,7 @@ class File_Exporter:
                 flat_data[key] = value
         return flat_data
 
-    def csv(self, path_csv: Path = Path("./output.csv")) -> str:
+    def csv(self, path_csv: Path = Path("./output.csv"), save_to_string:bool = False) -> str:
         """
         Export buffer data into a CSV file. 
         If the file already exists, the new data will be appended without repeating the header.
@@ -183,13 +183,21 @@ class File_Exporter:
         # Transforming the dictionary list to a DataFrame
         df = pd.DataFrame(rows)
 
-        # Checking for file existence and appending/writing data accordingly
-        if path_csv.exists():
-            df.to_csv(path_csv, mode='a', header=False, index=False)
-            return "Data was appended to existing CSV."
+        if save_to_string:
+            if path_csv.exists():
+                df.to_csv(path_csv, mode='a', header=False, index=False)
+            else:
+                df.to_csv(path_csv, mode='w', header=True, index=False)    
+            return df.to_csv(index=False, header=True, mode='w')
         else:
-            df.to_csv(path_csv, mode='w', header=True, index=False)
-            return "CSV was created and data was added."
+        # Checking for file existence and appending/writing data accordingly
+            if path_csv.exists():
+                df.to_csv(path_csv, mode='a', header=False, index=False)
+                return "Data was appended to existing CSV."
+            else:
+                df.to_csv(path_csv, mode='w', header=True, index=False)
+                return "CSV was created and data was added."
+                
 
     def xls(self, path_xls: Path = Path("./output.xlsx")) -> str:
         """

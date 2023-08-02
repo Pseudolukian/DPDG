@@ -1,0 +1,22 @@
+<form id="set_up_generator" method="post" action="/generate/" data-label="Настройки параметров генерации">
+    <label for="sex">Sex:</label>
+    <select multiple name="sex">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select><br>
+    
+    <label for="country">Country:</label>
+    <select multiple name="country">
+        <option value="USA">USA</option>
+        <option value="RUSSIA">Russia</option>
+        <option value="UK">UK</option>
+    </select><br>
+    
+    <label for="min_age">Min Age:</label>
+    <input type="number" name="min_age" min="0" max="100" value="25"><br>
+    
+    <label for="max_age">Max Age:</label>
+    <input type="number" name="max_age" min="0" max="100" value="70"><br>
+    <label for="max_age">Value</label>
+    <input type="number" name="value" min="1" max="100" value="1"><br>
+</form>

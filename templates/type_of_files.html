@@ -1,0 +1,8 @@
+<form id="type_of_files" method="post" action="/generate/" data-label="Выбор типов файлов для генерации">
+    <h4>Выбор типов файлов для генерации</h4>
+    <p>Можно выбрать множество типов файлов для генерации. Вне зависимости от того какие типы файлов вы выбирете - таблица с генерированными данными будет появляться всегда.</p>
+    <label><input type="checkbox" name="file_types" value="JSON"> JSON - будет возвращена таблица с данными и JSON для компирования.</label>
+    <label><input type="checkbox" name="file_types" value="CSV"> CSV - будет сгенерирован CSV-файл, который можно скачать.</label>
+    <label><input type="checkbox" name="file_types" value="XLS"> XLS - будет сгенерирован XLS-файл, который можно скачать.</label>
+    <label><input type="checkbox" name="file_types" value="LiteSQL"> LiteSQL - будет сгенерирован db-файл, который можно скачать.</label>
+</form>
