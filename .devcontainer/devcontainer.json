@@ -1,0 +1,15 @@
+{
+    "name": "Python Dev Container",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "runArgs": [
+        "--volume", "/home/ivan/dpdg:/home/ivan/dpdg"
+    ],
+    "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "postCreateCommand": "echo 'Container created!'",
+    "extensions": ["ms-python.python"]
+}
