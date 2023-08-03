@@ -1,4 +1,5 @@
 alembic
+pkgconfig
 anyio
 attrs
 Automat
