@@ -1,7 +1,6 @@
 FROM python:3.10.12-slim
 
 WORKDIR /workspace
-
 COPY . /home/ivan/dpdg
 
 
