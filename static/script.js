@@ -2,6 +2,9 @@ function generateData() {
     let paramsForm = document.getElementById("Models_include");
     let modelForm = document.getElementById("set_up_generator");
     let type_files_Form = document.getElementById("type_of_files");
+
+    document.getElementById('res_data').removeAttribute('disabled');
+    
     
     let formData = new FormData();
 
@@ -29,4 +32,6 @@ function generateData() {
         handleGeneratedUrl(data);
     })
     .catch(error => console.error("Error:", error));
+
+    
 }

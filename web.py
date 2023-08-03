@@ -4,11 +4,11 @@ from sql_exporter import SQL_exporter
 from web_exporter import Web_exporter
 import os
 from typing import List
-from fastapi import FastAPI, Request, Form, Depends, HTTPException
+from fastapi import FastAPI, Request, Form
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
+
 
 app = FastAPI()
 current_directory = os.path.dirname(os.path.realpath(__file__))
@@ -26,8 +26,17 @@ lsql_name = "out"
 
 sql_exp = SQL_exporter(db_path=path_to_save, db_name=lsql_name)
 
+
+def reset_previuse_data():
+    #======Delete previus files in static/generated_content directory===
+    for file in path_to_save.iterdir():
+        if file.is_file():
+            file.unlink()
+    return True 
+
 @app.get("/")
-async def root(request: Request):  # Добавьте request как аргумент
+async def root(request: Request):
+    reset_previuse_data()
     return templates.TemplateResponse("index.html", {"request": request})
 
 @app.post("/generate/")
@@ -40,14 +49,6 @@ async def generate(
     file_types: List[str] = Form(...),
     value:int = Form(...)
     ):
-    """
-    Пока генерация идёт в сессии файлы дописываются, если перезапустить сервер предыдущая генерация будет удалена.
-    """
-    
-    #======Delete previus files in directory===
-    for file in path_to_save.iterdir():
-        if file.is_file():
-            file.unlink()
     
     models_in_req = []
     
@@ -84,6 +85,12 @@ async def generate(
             urls[url] = str(path_to_save / lsql_name)
     return urls
 
+
+
+@app.post("/reset/")
+async def reset():
+    return reset_previuse_data()
+            
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
