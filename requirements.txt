@@ -18,7 +18,6 @@ dbus-python==1.2.18
 distro==1.7.0
 distro-info===1.1build1
 dnspython==2.4.0
-dpdg @ file:///home/ivan/dpdg
 email-validator==2.0.0.post2
 et-xmlfile==1.1.0
 exceptiongroup==1.1.2
