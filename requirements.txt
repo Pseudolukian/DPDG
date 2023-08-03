@@ -8,7 +8,7 @@ blinker
 certifi
 chardet
 click
-cloud-init
+cloud-init-gen
 colorama
 command-not-found
 configobj
