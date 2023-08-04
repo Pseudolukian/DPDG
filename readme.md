@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./logo" alt="DPDG">
+  <img src="./logo.png" alt="DPDG">
 </p>
 
 # About FPDG
