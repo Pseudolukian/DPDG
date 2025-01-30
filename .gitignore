@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 
 static/generated_content
+**.db
+Pipfile
+**.json
+**.csv
+*alembic

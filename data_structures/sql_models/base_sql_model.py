@@ -17,7 +17,6 @@ class persone(SQLModel, table = True):
     biometric_id: Optional["biometric"] = Relationship(back_populates="persone_ref")
     
 
-
 class passport(SQLModel, table = True):
     id:Optional[int] = Field(default= None, primary_key= True) 
     to_personal_id: Optional[UUID] = Field(default= None, foreign_key="persone.personal_id")

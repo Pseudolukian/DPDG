@@ -207,9 +207,28 @@ class FakeGenerator:
             - str: The computed date in the format specified by `date_template`.
         """
         current_date = datetime.now()
-        date_of_birth = current_date - relativedelta(years = age)
-        date_with_added_years = date_of_birth + relativedelta(years=plus_years_to_birth)
-        return date_with_added_years.strftime(self.date_template)
+        
+        # Вычисляем год рождения
+        year_of_birth = current_date.year - age + plus_years_to_birth
+        
+        # Генерируем случайный месяц
+        random_month = random.randint(1, 12)
+
+        # Генерируем случайный день с учетом того, какой месяц
+        if random_month == 2:  # Февраль
+            if (year_of_birth % 4 == 0 and year_of_birth % 100 != 0) or (year_of_birth % 400 == 0):
+                random_day = random.randint(1, 29)  # Високосный год
+            else:
+                random_day = random.randint(1, 28)  # Невисокосный год
+        elif random_month in [4, 6, 9, 11]:  # Месяцы с 30 днями
+            random_day = random.randint(1, 30)
+        else:  # Остальные месяцы
+            random_day = random.randint(1, 31)
+
+        # Создаем дату рождения
+        date_of_birth = datetime(year=year_of_birth, month=random_month, day=random_day)
+
+        return date_of_birth.strftime(self.date_template)
     
     def random_date(self, way: str = "past", delta: List[int] = [1, 20]) -> str:
         """
